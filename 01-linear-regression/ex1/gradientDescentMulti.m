@@ -17,10 +17,6 @@ for iter = 1:num_iters
     %       of the cost function (computeCostMulti) and gradient here.
     %
 
-
-
-
-
     H = X * theta;
     hyp = zeros(size(X, 2), 1);
 
@@ -29,10 +25,6 @@ for iter = 1:num_iters
     end
 
     theta = theta - (alpha * hyp) / m;
-
-
-
-
 
     % ============================================================
 
