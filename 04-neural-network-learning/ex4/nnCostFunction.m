@@ -62,25 +62,21 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+a1 = [ones(m, 1) X];
+z2 = a1 * Theta1';
+a2 = sigmoid(z2);
+a2 = [ones(m, 1)  a2];
+a3 = sigmoid(a2 * Theta2');
 
+dy = eye(num_labels)(y, :);
+J = sum(sum((-dy .* log(a3) - (1 - dy) .* log(1 - a3)), 2)) / m;
+J = J + (lambda / (2 * m)) * (sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(Theta2(:, 2:end) .^ 2)));
 
+delta3 = a3 - dy;
+delta2 = (delta3 * Theta2)(:, 2:end) .* sigmoidGradient(z2);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% -------------------------------------------------------------
+Theta1_grad = ((delta2' * a1) / m) + (lambda * ([zeros(hidden_layer_size , 1) Theta1(:, 2:end)] / m));
+Theta2_grad = ((delta3' * a2) / m) + (lambda * ([zeros(num_labels , 1) Theta2(:, 2:end)] / m));
 
 % =========================================================================
 
