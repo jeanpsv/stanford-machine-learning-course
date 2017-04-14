@@ -38,8 +38,8 @@ end
 
 mm = min(min(predictions_error));
 [i j] = find(predictions_error == mm);
-C = C_values(i)
-sigma = sigma_values(j)
+C = C_values(i);
+sigma = sigma_values(j);
 
 % =========================================================================
 
